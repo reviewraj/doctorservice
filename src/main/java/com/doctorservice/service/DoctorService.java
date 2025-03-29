@@ -1,11 +1,11 @@
 package com.doctorservice.service;
 
 import java.util.List;
+import java.util.Optional;
 
+import com.applicationservice.response.DoctorResponseDto;
 import com.doctorservice.entity.Doctor;
-import com.doctorservice.enums.Status;
 import com.doctorservice.request.DoctorRequestDto;
-import com.doctorservice.response.DoctorResponseDto;
 
 public interface DoctorService {
 
@@ -19,4 +19,6 @@ public interface DoctorService {
 	List<DoctorResponseDto> searchDoctors(String doctorName, String speciaList, Double minRating);
 
 	DoctorResponseDto rateTheDoctor(Double rating, String doctorEmail);
+
+	Optional<Doctor> finById(Integer id);
 }

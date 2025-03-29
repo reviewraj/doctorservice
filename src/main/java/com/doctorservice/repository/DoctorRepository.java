@@ -9,7 +9,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.doctorservice.entity.Doctor;
-import com.doctorservice.enums.Status;
 
 
 @Repository
@@ -24,4 +23,5 @@ public interface DoctorRepository extends JpaRepository<Doctor, Integer> {
         @Param("speciaList") String speciaList,
         @Param("minRating") Double minRating
     );
+	Optional<Doctor> findByDoctorId(Integer doctorId);
 }

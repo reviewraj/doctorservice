@@ -7,12 +7,12 @@ import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.applicationservice.response.DoctorResponseDto;
 import com.doctorservice.entity.Doctor;
 import com.doctorservice.enums.IsWorking;
 import com.doctorservice.enums.Role;
@@ -23,7 +23,6 @@ import com.doctorservice.exception.PasswordMismatch;
 import com.doctorservice.exception.UserNotExist;
 import com.doctorservice.repository.DoctorRepository;
 import com.doctorservice.request.DoctorRequestDto;
-import com.doctorservice.response.DoctorResponseDto;
 
 @Service
 public class DoctorServiceImpl implements DoctorService {
@@ -119,6 +118,24 @@ public class DoctorServiceImpl implements DoctorService {
 ////	    return leaveRepository.existsByDoctorAndStartingDateLessThanEqualAndEndingDateGreaterThanEqualAndLeaveStatus(
 ////	        doctor, today, today, AppointmentStatus.ACCEPTED); 
 //		return true;
+//	}
+	@Override
+//	@CircuitBreaker(name = "myCircuitBreakerforDoctor", fallbackMethod = "fallbackDoctor")
+//	@Retry(name = "retryforDoctor", fallbackMethod = "fallbackDoctor")
+//	@TimeLimiter(name = "timelimitforDoctor")
+	public Optional<Doctor> finById(Integer id) {
+		 Optional<Doctor> doctor = doctorRepository.findByDoctorId(id);
+		 return doctor;
+	       
+	       	    
+	}
+
+//	// Fallback method must return CompletableFuture
+//	public CompletableFuture<Optional<Doctor>> fallbackDoctor(Integer id, Throwable e) {
+//	    Doctor doctor = new Doctor();
+//	    doctor.setDoctorId(id);
+//	    doctor.setDoctorName("Unavailable Doctor");
+//	    return CompletableFuture.completedFuture(Optional.of(doctor));
 //	}
 
 }
